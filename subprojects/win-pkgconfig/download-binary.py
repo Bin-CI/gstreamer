@@ -35,6 +35,9 @@ if os.path.isfile(dest_path):
     found_sha256 = get_sha256(dest_path)
     if found_sha256 == zip_sha256:
         print('{} already downloaded'.format(dest))
+        print('Extracting {}'.format(dest))
+        zf = zipfile.ZipFile(dest_path, "r")
+        zf.extractall(path=source_dir)
         sys.exit(0)
     else:
         print('{} checksum mismatch, redownloading'.format(dest))
